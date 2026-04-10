@@ -29,7 +29,7 @@ class Task:
             'id' : self.id,
             'task' : self.task,
             'description' : self.description,
-            'is_done' : False,
+            'is_done' : self.is_done,
             'status' : self.status,
             'created_on' : self.created_on,
             'end_date' : self.end_date.strftime(self.DATE_FORMAT),
@@ -52,22 +52,15 @@ class TaskManager:
             now = datetime.now()
 
 
-            # print(f'the date is {created_on.date()}')
+            print(f'The current status is {task['status']}')
             if task['is_done']:
                 task['status'] = 'Done'
-                print(f'status is {task['status']}')
-
-            elif created_on == now:
-                task['status'] = 'To-do'
-                print(f'status is {task['status']} todo')
             
             elif now > end_date:
                 task['status'] = 'Expired'
-                print(f'status is {task['status']}')
             
             else:
                 task['status'] = 'In-process'
-                print(f'status is {task['status']}')
         
 
     def load_task(self):
